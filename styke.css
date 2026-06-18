@@ -1,0 +1,109 @@
+/* Reset a full-screen centrování */
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at center, #1a1a1a, #000);
+  font-family: 'Inter', sans-serif;
+}
+
+/* Odkaz jako kontejner */
+.card-wrapper {
+  text-decoration: none !important; /* Zrušení podtržení */
+  perspective: 1000px; /* Nutné pro 3D efekt */
+}
+
+/* Glassmorphism vizitka s hloubkou */
+.glass-card {
+  width: 320px;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  transition: transform 0.2s ease-out;
+  
+  /* Tady je ten stín, který jsi tam neměl */
+  box-shadow: 0 20px 50px rgba(255, 255, 255, 0.2);
+}
+
+/* Interakce: Tilt effect se řeší v JS, ale CSS připraveno */
+.card-wrapper:hover .glass-card {
+  transform: rotateX(10deg) rotateY(10deg);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Zvýraznění typografie pro lepší čitelnost */
+h1 { 
+    margin: 0;
+    color: #ffffff; /* Čistě bílá pro hlavní nadpis */
+    font-size: 2.5rem; /* Větší a výraznější */
+    font-weight: 800;  /* Tučné písmo */
+    letter-spacing: -1px; 
+}
+
+p { 
+    color: #e0e0e0; /* Světle šedá, lépe čitelná než tmavá */
+    font-size: 1.1rem;
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+/* Tlačítko/hint dole - aby vypadalo jako akční prvek */
+.click-hint {
+    color: #3b82f6; /* Moderní modrá pro kontrast na černém */
+    font-weight: 600;
+    margin-top: 15px;
+    display: block;
+}
+/* Toto vypne podtržení a barvu pro odkaz a VŠECHNO v něm */
+.card-wrapper, 
+.card-wrapper * {
+    text-decoration: none !important;
+    color: white;
+    outline: none !important;
+}
+
+/* Pokud chceš barvu textu bílou, definuj ji takto */
+.card-wrapper {
+    color: white !important;
+}
+/* Toto je absolutní reset pro tvoje odkazy */
+a {
+    text-decoration: none !important;
+    text-decoration-line: none !important;
+    border-bottom: none !important;
+    color: white !important;
+    display: block;
+}
+
+/* Toto zajistí, aby vnitřní prvky karty nikdy nezdědily podtržení */
+.card-wrapper h1, 
+.card-wrapper p, 
+.card-wrapper div {
+    text-decoration: none !important;
+    border: none !important;
+}
+.glow-orb {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.3), transparent 70%);
+    filter: blur(50px);
+    pointer-events: none;
+    z-index: 0;
+    /* Tady je kouzlo - CSS animace */
+    animation: drift 5s infinite alternate ease-in-out;
+}
+
+/* Animace pohybu v rohu */
+@keyframes drift {
+    0% { transform: translate(20px, 20px) scale(1); }
+    100% { transform: translate(-20px, -20px) scale(1.2); }
+}
